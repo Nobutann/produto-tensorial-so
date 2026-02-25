@@ -1,12 +1,18 @@
 #include <stdlib.h>
 #include "matrix_list.h"
 
-static Node* create_node(int data[2][2])
+static Node* create_node(int count, int data[count][count])
 {
     Node* new = (Node*)malloc(sizeof(Node));
-    for (int i = 0; i < 2; i++)
+    new->matrix = (int**)malloc(count * sizeof(int*));
+    for (int i = 0; i < count; i++)
     {
-        for (int j = 0; j < 2; j++)
+        new->matrix[i] = (int*)malloc(count * sizeof(int));
+    }
+    
+    for (int i = 0; i < count; i++)
+    {
+        for (int j = 0; j < count; j++)
         {
             new->matrix[i][j] = data[i][j];
         }
@@ -17,9 +23,9 @@ static Node* create_node(int data[2][2])
     return new;
 }
 
-void insert_end(Node** head, int data[2][2])
+void insert_end(Node** head, int count, int data[count][count])
 {
-    Node* new = create_node(data);
+    Node* new = create_node(count, data);
 
     if (*head == NULL)
     {
