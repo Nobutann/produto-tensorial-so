@@ -3,10 +3,11 @@
 
 typedef struct Node
 {
+    int size;
     int** matrix;
     struct Node* next;
 } Node;
 
-void insert_end(Node** head, int count, int data[count][count]);
+void insert_end(Node** head, int count, int** data);
 
 #endif
