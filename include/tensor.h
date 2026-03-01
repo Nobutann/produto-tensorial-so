@@ -3,8 +3,6 @@
 
 #include "matrix_list.h"
 
-int** tensor_product(Node* list, int* out_size);
-void free_matrix(int** matrix, int size);
-void out_file(FILE* fptr, int** matrix, int size);
+int** tensor_product(Node* matrix_list, int* out_size);
 
 #endif

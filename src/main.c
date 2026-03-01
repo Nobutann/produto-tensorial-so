@@ -2,6 +2,7 @@
 #include "matrix_list.h"
 #include <stdlib.h>
 #include <math.h>
+#include "tensor.h"
 
 int main(int argc, char* argv[])
 {
@@ -59,6 +60,29 @@ int main(int argc, char* argv[])
         }
         free(matrix);        
     }
+
+    int out_size;
+    int **result = tensor_product(matrix_list, &out_size);
+
+    FILE* fptr = fopen("tensor_lgof.out", "w");
+
+    for (int i = 0; i < out_size; i++)
+    {
+        for (int j = 0; j < out_size; j++)
+        {
+            fprintf(fptr,"%d ", result[i][j]);
+        }
+        
+        fprintf(fptr, "\n");
+    }
+
+    fclose(fptr);
+
+    for (int i = 0; i < out_size; i++)
+    {
+        free(result[i]);
+    }
+    free(result);
 
     return 0;
 }
